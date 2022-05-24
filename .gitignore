@@ -1,0 +1,7 @@
+build/
+/MiBiblioteca/WebContent/WEB-INF/lib
+/MiBiblioteca/WebContent/META-INF/*
+*.class
+.settings
+.project
+.classpath
