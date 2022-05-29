@@ -7,34 +7,35 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.ResultSet" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Lista de Libros</title>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 
 <script type="text/javascript"  >  
 
-function AltaLibro(){
-	
-	var miformulario=document.getElementById("miformulario");
-	miformulario.action ="FormularioAltaLibros.jsp";
-	miformulario.submit();
-	
+function validacion() {
+var isbn= document.getElementById("isbn");
+var miformulario=document.getElementById("miformulario");
+if(isbn.value==""){
+alert("datos no validos");
+return false;
+}else{
+miformulario.submit();
 }
- 
+}
 </script>
-
 </head>
-
 <body>
 
-<h1 >    Biblioteca </h1>
-
-
-<%
- 
+<% 
+String isbn =  request.getParameter("isbn"); 
+String titulo =  "";
 String url = "jdbc:mysql://localhost:3306/negocio?autoReconnect=true&useSSL=false"; 
 String usuario = "root";
 String Pas     = "point2020";
@@ -46,37 +47,42 @@ ResultSet rs=null;
 try {
 Class.forName("com.mysql.jdbc.Driver");
 //1
-conexion =
-DriverManager.getConnection( url, "root",clave);
+conexion = DriverManager.getConnection( url, "root",clave);
 sentencia= conexion.createStatement();
 //2
-String consultaSQL= "select isbn,titulo,categoria from Libros";
+String consultaSQL= "select isbn,titulo,categoria from Libros  where  isbn='"+ isbn+"'";   
 //3 y 4
 rs=sentencia.executeQuery(consultaSQL);
-//5
+ 
 
 %>
-<form id="miformulario"  >
-
-		<table  align="center"  border=1 >
-		<caption> Biblioteca Pública</caption>
-		<tr>
-			<th  style="width:100px" >ISBN</th>
-			<th style="width:200px"> Titulo</th>
-			<th style="width:200px" >Categoria</th>
-	     	<th  style="width:100px" ></th>			
-		</tr>
+ 
+<form id="miformulario" action="ControladorE" method="GET">
+ 		<h1>   Editar libros   </h1>
+ 
 <% 
 while(rs.next()) { %>
 
-		<tr>
-			<td> <%=rs.getString("isbn")%> </td>
-			<td> <%=rs.getString("titulo")%> </td>
-			<td> <%=rs.getString("categoria")%>  </td>
-			<td>  <a href="FormularioEditarLibro.jsp?isbn=<%=rs.getString("isbn")%>">Editar</a>
-			 </td>
+  
+ 
 
-		</tr>
+	 <p><label for="isbn">ISBN:</label>   <input id="isbn" type="text" name="isbn"  value="<%=rs.getString("isbn")%>"/></p>
+	 <p> <label for="titulo">Titulo:</label>
+<input id="titulo" type="text" name= "titulo"  value="<%=rs.getString("titulo")%>"/>
+</p><p>
+<label for="categoria">Categoria :</label>
+<input id="categoria" type="text" name="categoria"  value="<%=rs.getString("categoria")%>" />
+</p>
+<input type="button" value="Editar" onclick="validacion()">
+</form>
+
+
+
+
+		
+		
+		
+		
 <% }
 
 
@@ -103,17 +109,8 @@ try {conexion.close();} catch (SQLException e)
 %>
 
 
-		</table>
 
 
 
- <input type="button" value="AltaLibro" onclick="AltaLibro()">
-
-
- 
-</form>
- 
- 
 </body>
-
 </html>

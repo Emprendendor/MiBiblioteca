@@ -4,7 +4,7 @@ xmlns="http://JAVA.sun.com/xml/ns/javaee"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee" >
 
-
+ 
 
     <servlet>
         <servlet-name>register</servlet-name>
@@ -16,10 +16,49 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee" >
         <url-pattern>/WEB-INF/InsertarLibro.jsp</url-pattern>
     </servlet-mapping>
  
+ 
+ 
+    <servlet>
+        <servlet-name>Controlador-Dispacher</servlet-name>
+   		<servlet-class>com.biblioteca.Kernel.ControladorLibros</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Controlador-Dispacher</servlet-name>
+        <url-pattern>/Controlador</url-pattern>
+    </servlet-mapping>
+
+
+ 
+    <servlet>
+        <servlet-name>Controlador-Dispacher2</servlet-name>
+   		<servlet-class>com.biblioteca.Kernel.ControladorLibros</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Controlador-Dispacher2</servlet-name>
+        <url-pattern>/ControladorC</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Controlador-Dispacher3</servlet-name>
+   		<servlet-class>com.biblioteca.Kernel.ControladorLibros</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Controlador-Dispacher3</servlet-name>
+        <url-pattern>/ControladorE</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
 	<welcome-file-list>
-	
-		<welcome-file>  FormularioLibro01.html
-		</welcome-file>
+
+		<welcome-file>Index.html</welcome-file>
+		<welcome-file>FormularioLibro01.html</welcome-file>
+
 	</welcome-file-list>
  
  
