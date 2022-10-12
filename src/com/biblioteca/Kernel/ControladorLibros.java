@@ -40,6 +40,14 @@ public class ControladorLibros extends HttpServlet {
 			despachador = context.getRequestDispatcher("/EditarLibro.jsp");	
 		};
 		if (Destino == "/Controlador" ) {
+			
+			
+			 
+//		listaDeLibros.add(new Libro(rs.getString("isbn"),rs.getString("titulo"),rs.getString("categoria") ));
+//   	listaDeLibros.add(new Libro(rs.getString("isbn"),rs.getString("titulo"),rs.getString("categoria") ));
+			
+			
+			
 			despachador = context.getRequestDispatcher("/MostrarLibros.jsp");			
 	 	};
 
